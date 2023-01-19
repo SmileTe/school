@@ -1,8 +1,17 @@
 package ru.hogwarts.school.entities;
 
+
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    private String name;
    private int age;
@@ -13,12 +22,8 @@ public class Student {
         this.age = age;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Student() {
 
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -35,6 +40,14 @@ public class Student {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -58,4 +71,6 @@ public class Student {
                 ", age=" + age +
                 '}';
     }
+
+
 }
