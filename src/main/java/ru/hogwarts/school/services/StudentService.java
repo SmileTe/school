@@ -24,7 +24,7 @@ public class StudentService {
         return studentRepository.findById(id).get();
     }
 
-    public Student editStudent( Student student) {
+    public Student editStudent(Student student) {
 
         return studentRepository.save(student);
     }
@@ -34,16 +34,10 @@ public class StudentService {
     }
 
     public Collection<Student> getStudentsFilteredByAge(int perAge) {
-
-        return studentRepository.findAll().stream().filter(v->v.getAge()==perAge).toList();
-
+        return studentRepository.findStudentsByAgeEquals(perAge);
     }
 
     public Collection<Student> getStudents() {
-
         return studentRepository.findAll().stream().toList();
-
     }
-
-
 }

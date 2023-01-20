@@ -17,8 +17,9 @@ public class StudentController {
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
+
     @GetMapping("{id}")
-    public ResponseEntity<Student> getStudentInfo(@PathVariable long id){
+    public ResponseEntity<Student> getStudentInfo(@PathVariable long id) {
         Student student = studentService.findStudent(id);
         if (student == null) {
             return ResponseEntity.notFound().build();
@@ -26,19 +27,19 @@ public class StudentController {
         return ResponseEntity.ok(student);
 
     }
+
     @GetMapping("filter-by-age/{age}")
-    public Collection<Student> getStudentsFilteredByAge(@PathVariable int age){
+    public Collection<Student> getStudentsFilteredByAge(@PathVariable int age) {
         return studentService.getStudentsFilteredByAge(age);
     }
 
     @GetMapping("get-students")
-    public Collection<Student> getStudents(){
+    public Collection<Student> getStudents() {
         return studentService.getStudents();
     }
 
-
     @PostMapping
-    public Student createStudent(@RequestBody Student student){
+    public Student createStudent(@RequestBody Student student) {
         return studentService.createStudent(student);
     }
 
@@ -56,6 +57,4 @@ public class StudentController {
         }
         return ResponseEntity.ok(foundStudent);
     }
-
-
 }

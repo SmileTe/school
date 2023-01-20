@@ -10,12 +10,11 @@ import java.util.HashMap;
 
 @Service
 public class FacultyService {
-   private final FacultyRepository facultyRepository;
+    private final FacultyRepository facultyRepository;
 
     public FacultyService(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
     }
-
 
     public Faculty createFaculty(Faculty faculty) {
         return facultyRepository.save(faculty);
@@ -25,7 +24,7 @@ public class FacultyService {
         return facultyRepository.findById(id).get();
     }
 
-    public Faculty editFaculty( Faculty faculty) {
+    public Faculty editFaculty(Faculty faculty) {
         return facultyRepository.save(faculty);
     }
 
@@ -34,11 +33,10 @@ public class FacultyService {
     }
 
     public Collection<Faculty> getFacultiesFilteredByColor(String perColor) {
-        return facultyRepository.findAll().stream().filter(v->v.getColor().contains(perColor)).toList();
+        return facultyRepository.findFacultyByColorContainingIgnoreCase(perColor);
     }
 
     public Collection<Faculty> getFaculties() {
         return facultyRepository.findAll().stream().toList();
     }
-
 }
