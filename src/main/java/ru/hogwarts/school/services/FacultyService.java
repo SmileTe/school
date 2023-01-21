@@ -3,10 +3,12 @@ package ru.hogwarts.school.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.entities.Faculty;
+import ru.hogwarts.school.entities.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 @Service
 public class FacultyService {
@@ -39,4 +41,13 @@ public class FacultyService {
     public Collection<Faculty> getFaculties() {
         return facultyRepository.findAll().stream().toList();
     }
+
+    public Set<Student> getStudents(Long id) {
+        return facultyRepository.findById(id).get().getStudents();
+    }
+
+    public Collection<Faculty> findAllByColorContainingIgnoreCaseOrNameContainingIgnoreCase(String text) {
+        return facultyRepository.findAllByColorContainingIgnoreCaseOrNameContainingIgnoreCase(text, text);
+    }
+
 }
