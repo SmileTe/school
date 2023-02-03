@@ -49,6 +49,22 @@ public class StudentController {
         return studentService.getFaculty(id);
     }
 
+
+    @GetMapping("get-numbers-of-students")
+        public Integer getNumbersOfStudents() {
+        return studentService.getNumbersOfStudents();
+    }
+
+    @GetMapping("get-average-age-of-students")
+    public Integer getAveregeAgeOfStudents() {
+        return studentService.getAveregeAgeOfStudents();
+    }
+
+    @GetMapping("get-last-students")
+    public Collection<Student> getLastStudents() {
+        return studentService.getLastStudents();
+    }
+
     @PostMapping
     public Student createStudent(@RequestBody Student student) {
         return studentService.createStudent(student);
