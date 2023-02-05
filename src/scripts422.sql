@@ -1,12 +1,13 @@
 CREATE TABLE human (
-                       id SERIAL,
+                       id SERIAL PRIMARY KEY ,
+                       name TEXT,
                        age INTEGER,
                        haveDriverLicence boolean,
-                       car_id bigint
+                       car_id bigint references car (id)
 );
 
 CREATE TABLE car (
-                     id SERIAL,
+                     id SERIAL PRIMARY KEY ,
                      brand text,
                      model text,
                      price numeric
