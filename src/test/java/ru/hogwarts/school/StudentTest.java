@@ -28,7 +28,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest
+@WebMvcTest(controllers = StudentController.class)
  class StudentTest {
     @Autowired
     private MockMvc mockMvc;

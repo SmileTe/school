@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.hogwarts.school.controllers.AvatarController;
+import ru.hogwarts.school.controllers.FacultyController;
 import ru.hogwarts.school.controllers.StudentController;
 import ru.hogwarts.school.entities.Faculty;
 import ru.hogwarts.school.entities.Student;
@@ -27,7 +28,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
+@WebMvcTest(controllers = FacultyController.class)
 public class FacultyTest {
 
     @Autowired
