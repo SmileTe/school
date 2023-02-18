@@ -62,4 +62,14 @@ public class FacultyService {
         return facultyRepository.findAllByColorContainingIgnoreCaseOrNameContainingIgnoreCase(text, text);
     }
 
+    public String getLongestNameFaculty() {
+        logger.debug("get longest faculty name");
+        int maxNameLenght = facultyRepository.findAll().stream()
+                .mapToInt(s->s.getName().length())
+                .max().getAsInt();
+        return facultyRepository.findAll().stream()
+                .map(b -> b.getName())
+                .filter(d->d.length()==maxNameLenght).findAny().get();
+    }
+
 }

@@ -7,8 +7,10 @@ import ru.hogwarts.school.entities.Faculty;
 import ru.hogwarts.school.entities.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -64,14 +66,25 @@ public class StudentService {
         return studentRepository.getNumbersOfStudents();
     }
 
-    public Integer getAveregeAgeOfStudents(){
+    public Integer getAverageAgeOfStudents(){
         logger.debug("Requesting get average age of students");
-        return studentRepository.getAveregeAgeOfStudents();
+        //return studentRepository.getAveregeAgeOfStudents();
+        int[] arr =  studentRepository.findAll().stream()
+                .mapToInt(s->s.getAge()).toArray();
+                return Arrays.stream(arr).sum()/ arr.length;
     }
 
     public Collection<Student> getLastStudents(){
         logger.debug("Requesting get last students");
         return studentRepository.getLastStudents();
+    }
+
+    public Collection<String> getNamesStudentsBeginsWithLetter_A() {
+        logger.debug("Requesting get names of all students whose name begins with the letter A");
+        return studentRepository.findAll().stream()
+                .map(s -> s.getName().toUpperCase())
+                .sorted()
+                .filter(s -> s.startsWith("А")).toList();
     }
 
 }

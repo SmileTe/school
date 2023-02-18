@@ -48,6 +48,11 @@ public class FacultyController {
         return facultyService.getStudents(id);
     }
 
+    @GetMapping("longest-name-faculty")
+    public String getLongestNameFaculty() {
+        return facultyService.getLongestNameFaculty();
+    }
+
     @PostMapping
     public Faculty createFaculty(@RequestBody Faculty faculty) {
         return facultyService.createFaculty(faculty);

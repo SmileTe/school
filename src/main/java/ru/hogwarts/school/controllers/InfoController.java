@@ -22,4 +22,9 @@ public class InfoController {
 
         return infoService.getPort();
     }
+
+    @GetMapping("value-from-formula")
+    public int getValueFromFormula() {
+        return infoService.getValueFromFormula();
+    }
 }

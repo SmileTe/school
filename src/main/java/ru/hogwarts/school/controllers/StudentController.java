@@ -49,15 +49,14 @@ public class StudentController {
         return studentService.getFaculty(id);
     }
 
-
     @GetMapping("get-numbers-of-students")
         public Integer getNumbersOfStudents() {
         return studentService.getNumbersOfStudents();
     }
 
     @GetMapping("get-average-age-of-students")
-    public Integer getAveregeAgeOfStudents() {
-        return studentService.getAveregeAgeOfStudents();
+    public Integer getAverageAgeOfStudents() {
+        return studentService.getAverageAgeOfStudents();
     }
 
     @GetMapping("get-last-students")
@@ -84,4 +83,10 @@ public class StudentController {
         }
         return ResponseEntity.ok(foundStudent);
     }
+
+    @GetMapping("names-students-begins-with-letter-a")
+    public Collection<String> namesStudentsBeginsWithLetter_A() {
+        return studentService.getNamesStudentsBeginsWithLetter_A();
+    }
+
 }
