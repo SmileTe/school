@@ -9,6 +9,7 @@ import ru.hogwarts.school.entities.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -64,12 +65,10 @@ public class FacultyService {
 
     public String getLongestNameFaculty() {
         logger.debug("get longest faculty name");
-        int maxNameLenght = facultyRepository.findAll().stream()
-                .mapToInt(s->s.getName().length())
-                .max().getAsInt();
-        return facultyRepository.findAll().stream()
-                .map(b -> b.getName())
-                .filter(d->d.length()==maxNameLenght).findAny().get();
+               return facultyRepository.findAll().stream()
+                       .map(Faculty::getName)
+                       .max(Comparator.comparingInt(String::length))
+                       .orElse("");
     }
 
 }
