@@ -10,6 +10,7 @@ import ru.hogwarts.school.repository.StudentRepository;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,6 +86,46 @@ public class StudentService {
                 .map(s -> s.getName().toUpperCase())
                 .sorted()
                 .filter(s -> s.startsWith("А")).toList();
+    }
+    public void print6students (){
+       List<Student> students = studentRepository.findAll();
+       System.out.println(students.get(0));
+       System.out.println(students.get(1));
+
+        new Thread(()->{
+            printStudents(students,2,3);
+        }).start();
+        new Thread(()->{
+            printStudents(students,4,5);
+        }).start();
+    }
+
+    public void printStudents(List<Student> students, int min, int max){
+        new Thread(()->{
+            System.out.println(students.get(min));
+            System.out.println(students.get(max));
+        }).start();
+    }
+
+    public void print6students_synchronized (){
+        List<Student> students = studentRepository.findAll();
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
+        new Thread(()->{
+            printStudents_synchronized(students,2,3);
+        }).start();
+        new Thread(()->{
+            printStudents_synchronized(students,4,5);
+        }).start();
+    }
+
+    public void printStudents_synchronized(List<Student> students, int min, int max){
+        synchronized (Student.class) {
+            new Thread(() -> {
+                System.out.println(students.get(min));
+                System.out.println(students.get(max));
+            }).start();
+        }
     }
 
 }

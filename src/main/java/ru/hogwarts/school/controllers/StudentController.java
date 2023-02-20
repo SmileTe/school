@@ -89,4 +89,13 @@ public class StudentController {
         return studentService.getNamesStudentsBeginsWithLetter_A();
     }
 
+    @GetMapping("print-6-students")
+    public void print6students(){
+        studentService.print6students();
+    }
+
+    @GetMapping("print-6-students-synchronized")
+    public void print6students_synchronized(){
+        studentService.print6students_synchronized();
+    }
 }
