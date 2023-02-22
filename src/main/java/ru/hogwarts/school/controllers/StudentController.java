@@ -90,12 +90,12 @@ public class StudentController {
     }
 
     @GetMapping("print-6-students")
-    public void print6students(){
-        studentService.print6students();
+    public void print6Students(){
+        studentService.print6Students();
     }
 
     @GetMapping("print-6-students-synchronized")
-    public void print6students_synchronized(){
-        studentService.print6students_synchronized();
+    public void print6Students_Synchronized(){
+        studentService.print6Students_Synchronized();
     }
 }

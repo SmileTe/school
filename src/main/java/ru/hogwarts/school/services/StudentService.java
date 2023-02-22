@@ -87,17 +87,13 @@ public class StudentService {
                 .sorted()
                 .filter(s -> s.startsWith("А")).toList();
     }
-    public void print6students (){
+    public void print6Students (){
        List<Student> students = studentRepository.findAll();
        System.out.println(students.get(0));
        System.out.println(students.get(1));
+        printStudents(students, 2, 3);
+        printStudents(students,4,5);
 
-        new Thread(()->{
-            printStudents(students,2,3);
-        }).start();
-        new Thread(()->{
-            printStudents(students,4,5);
-        }).start();
     }
 
     public void printStudents(List<Student> students, int min, int max){
@@ -107,20 +103,17 @@ public class StudentService {
         }).start();
     }
 
-    public void print6students_synchronized (){
+    public void print6Students_Synchronized (){
         List<Student> students = studentRepository.findAll();
         System.out.println(students.get(0));
         System.out.println(students.get(1));
-        new Thread(()->{
-            printStudents_synchronized(students,2,3);
-        }).start();
-        new Thread(()->{
-            printStudents_synchronized(students,4,5);
-        }).start();
+        printStudents_Synchronized(students, 2, 3);
+        printStudents_Synchronized(students,4,5);
+
     }
 
-    public void printStudents_synchronized(List<Student> students, int min, int max){
-        synchronized (Student.class) {
+    public void printStudents_Synchronized(List<Student> students, int min, int max){
+        synchronized (this) {
             new Thread(() -> {
                 System.out.println(students.get(min));
                 System.out.println(students.get(max));
