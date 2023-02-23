@@ -91,34 +91,36 @@ public class StudentService {
        List<Student> students = studentRepository.findAll();
        System.out.println(students.get(0));
        System.out.println(students.get(1));
-        printStudents(students, 2, 3);
-        printStudents(students,4,5);
-
+        new Thread(() -> {
+            printStudents(students, 2, 3);
+        }).start();
+        new Thread(() -> {
+            printStudents(students, 4, 5);
+        }).start();
     }
 
     public void printStudents(List<Student> students, int min, int max){
-        new Thread(()->{
             System.out.println(students.get(min));
             System.out.println(students.get(max));
-        }).start();
     }
 
     public void print6Students_Synchronized (){
         List<Student> students = studentRepository.findAll();
         System.out.println(students.get(0));
         System.out.println(students.get(1));
-        printStudents_Synchronized(students, 2, 3);
-        printStudents_Synchronized(students,4,5);
+        synchronized (this) {
+            new Thread(() -> {
+                printStudents_Synchronized(students, 2, 3);
+            }).start();
+            new Thread(() -> {
+                printStudents_Synchronized(students, 4, 5);
+            }).start();
+        }
 
     }
 
     public void printStudents_Synchronized(List<Student> students, int min, int max){
-        synchronized (this) {
-            new Thread(() -> {
                 System.out.println(students.get(min));
                 System.out.println(students.get(max));
-            }).start();
-        }
     }
-
 }
